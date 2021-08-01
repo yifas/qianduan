@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    由于一些div的高度是不固定的 不能写死高度  因此需要使用浮动
+    但是浮动后面的 标准流盒子会到 浮动元素的下面
+    为了正常显示标准流   需要清楚浮动！
+ -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 方式一 */
+
+        /* 伪元素清楚浮动 */
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+      /*   .clearfix { 兼容IE
+            *zoom: 1;
+        } */
+
+        /* 方式二 */
+        /* 前后都清楚 */
+        .clearfix:before,.clearfix:after {
+            content: "";
+            display: table;
+    
+        }
+        .clearfix:after {
+            clear: both;
+        }
+
+
+        .box {
+            width: 800px;
+            /* height: 200px; */
+            margin: 0 auto;
+            background-color: skyblue;
+            border: 1px solid blue;
+        }
+        .d1 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            float: left;
+        }
+        .d2 {
+            width: 200px;
+            height: 200px;
+            background-color: purple;
+            float: left;
+        }
+        .box2 {
+            height: 200px;
+            width: 80%;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 需要在此使用 即：浮动元素的父元素上添加清楚浮动  相当于用css在浮动元素最后加了个闭合元素 -->
+    <div class="box clearfix">
+        <div class="d1">1</div>
+        <div class="d2">2</div>
+    </div>
+    <div class="box2"></div>
+</body>
+
+</html>
